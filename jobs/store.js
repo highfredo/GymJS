@@ -25,6 +25,12 @@ function findAll () {
         .then(helper.out);
 }
 
+function findByUserId (userId) {
+    logger.debug('Searching {{0}}', COLLECTION);
+    return db.find({ user: userId }).toArray()
+        .then(helper.out);
+}
+
 function add (data) {
     logger.debug('Adding {{0}}', COLLECTION);
     data._lastupdate = new Date();
@@ -71,5 +77,6 @@ module.exports = {
     findAll,
     add,
     update,
-    remove
+    remove,
+    findByUserId
 };
