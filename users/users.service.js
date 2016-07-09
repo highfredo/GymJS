@@ -36,6 +36,7 @@ module.exports = function (router) {
                 });
         })
         .post(function (req, res) {
+            console.log(req.body)
             store.add(req.body)
                 .then(function (result) {
                     res
@@ -105,18 +106,20 @@ module.exports = function (router) {
                 });
         });
 
-    router.router('/user/login')
+    router.route('/user/login')
         .post(function (req, res) {
             var user = req.body.user;
             var pass = req.body.pass;
-            store.findById(login).then(function (user) {
+            store.findById(user).then(function (user) {
                 if (user.password === pass) {
-                    auth.addHash(user.id)
-                    res.json(user)
+                    auth.addHash(user.id).then(function (data) {
+                        res.json(data)
+                    })
                 } else {
                     res.status(401).send()
                 }
-            }).catch(function () {
+            }).catch(function (err) {
+                console.log(err)
                 res
                     .status(500)
                     .json({
@@ -126,4 +129,5 @@ module.exports = function (router) {
             });
         })
 
+    return router;
 };

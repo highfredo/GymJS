@@ -1,13 +1,13 @@
 'use strict';
 
-const config      = require('../config.json');
+const config      = require('../config');
 const DB          = require('mongodb').MongoClient;
 const COLLECTION  = 'users';
 const logger      = require('../lib/logger/')('user-store');
 logger.config(config.logger.level);
 
 var db;
-DB.connect(config.db.connection)
+DB.connect(config.db)
     .then(function(conn) {
         db = conn.collection(COLLECTION);
     });
