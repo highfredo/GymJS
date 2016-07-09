@@ -1,5 +1,5 @@
 module.exports = {
-    db: 'mongodb://sample:sample@ds055872.mlab.com:55872/sample',
+    db: 'mongodb://GymJS:6q4w3r7t5y.-@localhost:8081/GymJS',
     logger: {
         level: "DEBUG"
     }
